@@ -1,0 +1,16 @@
+给你字符串 s 和整数 k 。
+请返回字符串 s 中长度为 k 的单个子字符串中可能包含的最大元音字母数。
+int maxVowels(char* s, int k) {
+    int n=strlen(s),max=0,begin=0;
+    for(int i=0;i<=k-1;i++){
+        if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u') begin++;
+    }
+    max=begin;
+    for(int i=0;i<n-k;i++){
+        if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u') begin--;
+        if(s[i+k]=='a'||s[i+k]=='e'||s[i+k]=='i'||s[k+i]=='o'||s[k+i]=='u') begin++;
+        if(begin>max) max=begin;
+        if(max==k) return k;
+    }
+    return max;
+}
