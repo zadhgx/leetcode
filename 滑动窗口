@@ -14,3 +14,20 @@ int maxVowels(char* s, int k) {
     }
     return max;
 }
+给你一个由 n 个元素组成的整数数组 nums 和一个整数 k 。
+请你找出平均数最大且 长度为 k 的连续子数组，并输出该最大平均数
+double findMaxAverage(int* nums, int numsSize, int k) {
+    int sum=0,max;
+    int n=numsSize;
+    for(int i=0;i<n;i++){
+        int left=i+1-k;
+        sum+=nums[i];
+        if(left<=0){
+           max=sum;
+           continue;}
+        sum-=nums[i-k];
+        if(sum>max) max=sum;
+    }
+    double ans=(double)max/k;
+    return ans;
+}
